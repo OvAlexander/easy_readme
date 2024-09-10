@@ -34,12 +34,37 @@ def create_shields(**kwargs)->str:
             print(f"{key} does not exist")
     return shield_str
 
+def create_logo()->str:
+    github_url = f"https://github.com/{username}/{project_name}"
+    logo_file_path = "../images/logo.png"
+    name = "easy_readme"
+    logo_html = '''\
+    <br />
+    <div align="center">
+    <a href="{github_url}">
+        <img src="{logo_file_path}" alt="Logo" width="80" height="80">
+    </a>
+    <h3 align="center">{name}</h3>
+    <p align="center">
+        project_description
+        <br />
+        <a href="{github_url}"><strong>Explore the docs >></strong></a>
+        <br />
+        <br />
+        <a href="{github_url}">View Demo</a>
+        <a href="{github_url}/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+        <a href="{github_url}/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    </p>
+    </div>
+    '''.format(**locals())
+    return logo_html
 
 def create_readme():
     file_path = "./output/README.md"
     file = open(file_path, "w")
     shields = create_shields(contrib = False, fork = True, star = False, issues = True, license = True, linkedin = True, test = True, test_false = False)
-    file.write(f"{shields}")
+    logo = create_logo()
+    file.write(f"{shields}{logo}")
 
 def get_repo():
     repo_path = "./"

@@ -23,20 +23,20 @@ def create_links():
         url_str += f"[{key}]: {value}\n"
     return url_str
 
-def create_imgs():
+def create_imgs(**kwargs)->str:
     img_str = ""
     base_shield_url = "https://img.shields.io/github/"
     end_shield_url = f"/{username}/{project_name}.svg?style=for-the-badge"
-    project_shields = {
-        "contributors-shield": f"{base_shield_url}contributers{end_shield_url}",
-        "forks-shield": f"{base_shield_url}forks{end_shield_url}",
-        "stars-shield": f"{base_shield_url}stars{end_shield_url}",
-        "issues-shield": f"{base_shield_url}issues{end_shield_url}",
-        "license-shield": f"{base_shield_url}license{end_shield_url}",
-        "linkedin-shield": "https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555"
+    options = {
+        "contrib": f"[contributors-shield]: {base_shield_url}contributers{end_shield_url}",
+        "fork": f"[forks-shield]: {base_shield_url}forks{end_shield_url}",
+        "star": f"[stars-shield]: {base_shield_url}stars{end_shield_url}",
+        "issues": f"[issues-shield]: {base_shield_url}issues{end_shield_url}",
+        "license": f"[license-shield]: {base_shield_url}license{end_shield_url}",
+        "linkedin": "[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555"
     }
-    for key, value in project_shields.items():
-        img_str += f"[{key}]: {value}\n"
+    for key, value in kwargs.items():
+        if key in options and value: img_str += f"{options[key]}\n"
     return img_str
 
 
@@ -82,13 +82,13 @@ def create_logo()->str:
     '''.format(**locals())
     return logo_html
 
-def create_readme():
+def create_readme(**kwargs):
     file_path = "./output/README.md"
     file = open(file_path, "w")
-    shields = create_shields(contrib = False, fork = True, star = False, issues = True, license = True, linkedin = True, test = True, test_false = False)
+    shields = create_shields(**kwargs)
     logo = create_logo()
     links = create_links()
-    imgs = create_imgs()
+    imgs = create_imgs(**kwargs)
     file.write(f"{shields}{logo}\n{links}\n{imgs}")
 
 def get_repo():
@@ -100,5 +100,5 @@ def get_repo():
 
 
 if __name__ == "__main__":
-    create_readme()
+    create_readme(contrib = False, fork = True, star = False, issues = True, license = True, linkedin = True, test = True, test_false = False)
     # print(get_repo())

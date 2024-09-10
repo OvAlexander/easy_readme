@@ -8,19 +8,20 @@ user_socials = {
     "linkedin": "https://www.linkedin.com/in/alexander-ov"
 }
 
-def create_links():
+def create_links(**kwargs)->str:
     url_str = ""
     base_gh_url = f"https://github.com/{username}/{project_name}/"
-    project_urls = {
-        "contributors-url": f"{base_gh_url}graphs/contributors",
-        "forks-url": f"{base_gh_url}forks",
-        "stars-url": f"{base_gh_url}stargazers",
-        "issues-url": f"{base_gh_url}issues",
-        "license-url": f"{base_gh_url}blob/main/LICENSE",
-        "contrib-rocks-url": f"https://contrib.rocks/image?repo={username}/{project_name}"
+    options = {
+        "contrib": f"[contributors-url]: {base_gh_url}graphs/contributors",
+        "fork": f"[forks-url]: {base_gh_url}forks",
+        "star": f"[stars-url]: {base_gh_url}stargazers",
+        "issues": f"[issues-url]: {base_gh_url}issues",
+        "license": f"[license-url]: {base_gh_url}blob/main/LICENSE",
+        "contrib" : f"[contrib-rocks-url]: https://contrib.rocks/image?repo={username}/{project_name}",
+        "linkedin": "[linkedin-url]: https://linkedin.com/in/alexander-ov"
     }
-    for key, value in project_urls.items():
-        url_str += f"[{key}]: {value}\n"
+    for key, value in kwargs.items():
+        if key in options and value: url_str += f"{options[key]}\n"
     return url_str
 
 def create_imgs(**kwargs)->str:
@@ -87,7 +88,7 @@ def create_readme(**kwargs):
     file = open(file_path, "w")
     shields = create_shields(**kwargs)
     logo = create_logo()
-    links = create_links()
+    links = create_links(**kwargs)
     imgs = create_imgs(**kwargs)
     file.write(f"{shields}{logo}\n{links}\n{imgs}")
 

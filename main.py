@@ -27,7 +27,8 @@ def create_readme():
 def get_repo():
     repo_path = "./"
     repo = Repo(repo_path)
-    repo_name = repo.remotes.origin.url.split('.git')[0].split('/')[-1]
+    repo_url = repo.remotes.origin.url
+    repo_name = repo_url.split('.git')[0].split('/')[-1]
     return repo_name
 
 

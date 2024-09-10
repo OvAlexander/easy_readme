@@ -8,14 +8,37 @@ user_socials = {
     "linkedin": "https://www.linkedin.com/in/alexander-ov"
 }
 
-project_urls = {
-    "contributors-url": f"https://github.com/{username}/{project_name}/graphs/contributors",
-    "forks-url": f"https://github.com/{username}/{project_name}/forks",
-    "stars-url": f"https://github.com/{username}/{project_name}/stargazers",
-    "issues-url": f"https://github.com/{username}/{project_name}/issues",
-    "license-url": f"https://github.com/{username}/{project_name}/blob/main/LICENSE",
-    "contrib-rocks-url": f"https://contrib.rocks/image?repo={username}/{project_name}"
-}
+def create_links():
+    url_str = ""
+    base_gh_url = f"https://github.com/{username}/{project_name}/"
+    project_urls = {
+        "contributors-url": f"{base_gh_url}graphs/contributors",
+        "forks-url": f"{base_gh_url}forks",
+        "stars-url": f"{base_gh_url}stargazers",
+        "issues-url": f"{base_gh_url}issues",
+        "license-url": f"{base_gh_url}blob/main/LICENSE",
+        "contrib-rocks-url": f"https://contrib.rocks/image?repo={username}/{project_name}"
+    }
+    for key, value in project_urls.items():
+        url_str += f"[{key}]: {value}\n"
+    return url_str
+
+def create_imgs():
+    img_str = ""
+    base_shield_url = "https://img.shields.io/github/"
+    end_shield_url = f"/{username}/{project_name}.svg?style=for-the-badge"
+    project_shields = {
+        "contributors-shield": f"{base_shield_url}contributers{end_shield_url}",
+        "forks-shield": f"{base_shield_url}forks{end_shield_url}",
+        "stars-shield": f"{base_shield_url}stars{end_shield_url}",
+        "issues-shield": f"{base_shield_url}issues{end_shield_url}",
+        "license-shield": f"{base_shield_url}license{end_shield_url}",
+        "linkedin-shield": "https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555"
+    }
+    for key, value in project_shields.items():
+        img_str += f"[{key}]: {value}\n"
+    return img_str
+
 
 def create_shields(**kwargs)->str:
     options = { "contrib": "[![Contributors][contributors-shield]][contributors-url]", 
@@ -64,7 +87,9 @@ def create_readme():
     file = open(file_path, "w")
     shields = create_shields(contrib = False, fork = True, star = False, issues = True, license = True, linkedin = True, test = True, test_false = False)
     logo = create_logo()
-    file.write(f"{shields}{logo}")
+    links = create_links()
+    imgs = create_imgs()
+    file.write(f"{shields}{logo}\n{links}\n{imgs}")
 
 def get_repo():
     repo_path = "./"

@@ -20,3 +20,17 @@
     </p>
     </div>
     
+[contributors-url]: https://github.com/OvAlexander/easy_readme/graphs/contributors
+[forks-url]: https://github.com/OvAlexander/easy_readme/forks
+[stars-url]: https://github.com/OvAlexander/easy_readme/stargazers
+[issues-url]: https://github.com/OvAlexander/easy_readme/issues
+[license-url]: https://github.com/OvAlexander/easy_readme/blob/main/LICENSE
+[contrib-rocks-url]: https://contrib.rocks/image?repo=OvAlexander/easy_readme
+[linkedin-url]: https://linkedin.com/in/alexander-ov
+
+[contributors-shield]: https://img.shields.io/github/contributers/OvAlexander/easy_readme.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/OvAlexander/easy_readme.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/OvAlexander/easy_readme.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/OvAlexander/easy_readme.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/OvAlexander/easy_readme.svg?style=for-the-badge
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555

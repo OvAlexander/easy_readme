@@ -9,7 +9,7 @@ user_socials = {
 }
 
 def create_links(**kwargs)->str:
-    url_str = "<!-- PROJECT URLS -->\n"
+    url_str = "\n<!-- PROJECT URLS -->\n"
     base_gh_url = f"https://github.com/{username}/{project_name}/"
     options = {
         "contrib": f"[contributors-url]: {base_gh_url}graphs/contributors",
@@ -113,6 +113,18 @@ def create_toc()->str:
 '''.format(**locals())
     return toc_html
 
+def create_about(**kwargs):
+    url = "https://alexanderov.com"
+    about = """\
+Tired of creating README.md from scratch? Well time to make EASY! Just run :sparkles: EASYREADME :sparkles: , 
+fill in your info and BAM a brand new README.md fully formatted. Happy Coding! :heart:
+"""
+    about_str = "## About The Project\n\n"
+    about_str += f"[![Screenshot][screenshot]]({url})"
+    about_str += about
+    about_str += "<p align='"'right'"'>(<a href='"'#readme-top'"'>back to top</a>)</p>"
+    return about_str
+
 def create_readme(**kwargs):
     file_path = "./output/README.md"
     file = open(file_path, "w")
@@ -120,9 +132,10 @@ def create_readme(**kwargs):
     shields = create_shields(**kwargs)
     logo = create_logo()
     toc = create_toc()
+    about = create_about()
     links = create_links(**kwargs)
     imgs = create_imgs(**kwargs)
-    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{links}\n{imgs}")
+    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{about}\n{links}\n{imgs}")
 
 def get_repo():
     repo_path = "./"

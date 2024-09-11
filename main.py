@@ -84,15 +84,45 @@ def create_logo()->str:
 '''.format(**locals())
     return logo_html
 
+def create_toc()->str:
+    toc_html = '''\
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+'''.format(**locals())
+    return toc_html
+
 def create_readme(**kwargs):
     file_path = "./output/README.md"
     file = open(file_path, "w")
     top = "<a id='"'readme-top'"'></a>\n"
     shields = create_shields(**kwargs)
     logo = create_logo()
+    toc = create_toc()
     links = create_links(**kwargs)
     imgs = create_imgs(**kwargs)
-    file.write(f"{top}\n{shields}\n{logo}\n{links}\n{imgs}")
+    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{links}\n{imgs}")
 
 def get_repo():
     repo_path = "./"

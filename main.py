@@ -9,7 +9,7 @@ user_socials = {
 }
 
 def create_links(**kwargs)->str:
-    url_str = ""
+    url_str = "<!-- PROJECT URLS -->\n"
     base_gh_url = f"https://github.com/{username}/{project_name}/"
     options = {
         "contrib": f"[contributors-url]: {base_gh_url}graphs/contributors",
@@ -25,7 +25,7 @@ def create_links(**kwargs)->str:
     return url_str
 
 def create_imgs(**kwargs)->str:
-    img_str = ""
+    img_str = "<!-- PROJECT IMAGES -->\n"
     base_shield_url = "https://img.shields.io/github/"
     end_shield_url = f"/{username}/{project_name}.svg?style=for-the-badge"
     options = {
@@ -48,7 +48,7 @@ def create_shields(**kwargs)->str:
                 "issues": "[![Issues][issues-shield]][issues-url]", 
                 "license": "[![MIT License][license-shield]][license-url]", 
                 "linkedin": "[![LinkedIn][linkedin-shield]][linkedin-url]"}
-    shield_str = ""
+    shield_str = "<!-- PROJECT SHIELDS -->\n"
     for key, value in kwargs.items():
         if key in options and value:
             shield_str += f"{options[key]}\n"
@@ -63,34 +63,36 @@ def create_logo()->str:
     logo_file_path = "../images/logo.png"
     name = "easy_readme"
     logo_html = '''\
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+<a href="{github_url}">
+    <img src="{logo_file_path}" alt="Logo" width="80" height="80">
+</a>
+<h3 align="center">{name}</h3>
+<p align="center">
+    project_description
     <br />
-    <div align="center">
-    <a href="{github_url}">
-        <img src="{logo_file_path}" alt="Logo" width="80" height="80">
-    </a>
-    <h3 align="center">{name}</h3>
-    <p align="center">
-        project_description
-        <br />
-        <a href="{github_url}"><strong>Explore the docs >></strong></a>
-        <br />
-        <br />
-        <a href="{github_url}">View Demo</a>
-        <a href="{github_url}/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
-        <a href="{github_url}/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
-    </p>
-    </div>
-    '''.format(**locals())
+    <a href="{github_url}"><strong>Explore the docs >></strong></a>
+    <br />
+    <br />
+    <a href="{github_url}">View Demo</a>
+    <a href="{github_url}/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="{github_url}/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+</p>
+</div>
+'''.format(**locals())
     return logo_html
 
 def create_readme(**kwargs):
     file_path = "./output/README.md"
     file = open(file_path, "w")
+    top = "<a id='"'readme-top'"'></a>\n"
     shields = create_shields(**kwargs)
     logo = create_logo()
     links = create_links(**kwargs)
     imgs = create_imgs(**kwargs)
-    file.write(f"{shields}{logo}\n{links}\n{imgs}")
+    file.write(f"{top}\n{shields}\n{logo}\n{links}\n{imgs}")
 
 def get_repo():
     repo_path = "./"

@@ -79,6 +79,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- CONTACT -->
+## Contact
+[Alexander Ov](https://alexanderov.com) - alexanderleeov@gmail.com]
+Project Link: [https://github.com/OvAlexander/easy_readme]
+<p align='right'>(<a href='#readme-top'>back to top</a>)</p>
+
+
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 

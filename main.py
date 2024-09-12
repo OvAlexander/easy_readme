@@ -125,7 +125,16 @@ fill in your info and BAM a brand new README.md fully formatted. Happy Coding! :
     about_str += "<p align='"'right'"'>(<a href='"'#readme-top'"'>back to top</a>)</p>"
     return about_str
 
-
+def create_contact():
+    name = "Alexander Ov"
+    website = "https://alexanderov.com"
+    email = "alexanderleeov@gmail.com"
+    project_url = f"https://github.com/{username}/{project_name}"
+    contact_str = "<!-- CONTACT -->\n## Contact\n"
+    contact_str += f"[{name}]({website}) - {email}]\n"
+    contact_str += f"Project Link: [{project_url}]\n"
+    contact_str += f"<p align='"'right'"'>(<a href='"'#readme-top'"'>back to top</a>)</p>\n"
+    return contact_str
 
 def fetch_readme(file: str) -> str:
     file = f"./templates/{file}.md"
@@ -154,11 +163,11 @@ def create_readme(**kwargs):
     contrib = fetch_readme("contributing")
     # Top contrib
     license = fetch_readme("license")
-    # Contact
+    contact = create_contact()
     ack = fetch_readme("acknowledgements")
     links = create_links(**kwargs)
     imgs = create_imgs(**kwargs)
-    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{about}\n\n{contrib}\n\n{license}\n\n{ack}\n{links}\n{imgs}")
+    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{about}\n\n{contrib}\n\n{license}\n\n{contact}\n\n{ack}\n{links}\n{imgs}")
 
 def get_repo():
     repo_path = "./"

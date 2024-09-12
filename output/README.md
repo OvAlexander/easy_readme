@@ -79,6 +79,13 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
+
+* []()
+* []()
+* []()
+
 <!-- PROJECT URLS -->
 [forks-url]: https://github.com/OvAlexander/easy_readme/forks
 [issues-url]: https://github.com/OvAlexander/easy_readme/issues

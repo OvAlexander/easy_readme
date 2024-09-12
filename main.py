@@ -125,6 +125,16 @@ fill in your info and BAM a brand new README.md fully formatted. Happy Coding! :
     about_str += "<p align='"'right'"'>(<a href='"'#readme-top'"'>back to top</a>)</p>"
     return about_str
 
+def fetch_readme(file: str) -> str:
+    file = f"./templates/{file}.md"
+    md_file = open(file, "r")
+    md_text = md_file.readlines()
+    md_file.close()
+    parsed_text = ""
+    for text in md_text:
+        parsed_text += text
+    return parsed_text
+
 def create_readme(**kwargs):
     file_path = "./output/README.md"
     file = open(file_path, "w")
@@ -133,9 +143,20 @@ def create_readme(**kwargs):
     logo = create_logo()
     toc = create_toc()
     about = create_about()
+    # Built With
+    starting = fetch_readme("getting_started")
+    # Prereq
+    # Install
+    # Usage
+    # Roadmap
+    contrib = fetch_readme("contributing")
+    # Top contrib
+    license = fetch_readme("license")
+    # Contact
+    # Ack
     links = create_links(**kwargs)
     imgs = create_imgs(**kwargs)
-    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{about}\n{links}\n{imgs}")
+    file.write(f"{top}\n{shields}\n{logo}\n{toc}\n{about}\n\n{contrib}\n\n{license}\n{links}\n{imgs}")
 
 def get_repo():
     repo_path = "./"

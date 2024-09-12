@@ -1,4 +1,19 @@
 from git import Repo
+from user import User
+from repo import ProjectRepo
+def init():
+    user = User()
+    user.name = "Alexander Ov"
+    user.username = "OvAlexander"
+    user.email = "alexanderov@gmail.com"
+    user.linkedin = "alexander-ov"
+    user.twitter = None
+    repo = ProjectRepo()
+    repo.title = "easy_readme"
+    repo.url = f"https://github.com/{user.username}/{repo.title}"
+    print(user)
+    print(repo)
+
 username = "OvAlexander"
 project_name = "easy_readme"
 
@@ -178,5 +193,6 @@ def get_repo():
 
 
 if __name__ == "__main__":
+    init()
     create_readme(contrib = False, fork = True, star = False, issues = True, license = True, linkedin = True, test = True, test_false = False)
     # print(get_repo())
